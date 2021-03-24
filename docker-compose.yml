@@ -1,0 +1,56 @@
+version: "3"
+services:
+  guia_postgres:
+    image: postgres:latest
+    container_name: guia_postgres
+    volumes:
+      - ./.ignore/postgres/postgres:/var/lib/postgresql/data
+    networks:
+      - guia_network
+    environment: 
+      - POSTGRES_NAME=guia_minha_matricula
+      - POSTGRES_PASSWORD= 1234
+      - POSTGRES_USER= api_user
+      - POSTGRES_DB=guia_minha_matricula
+      - POSTGRES_HOST=guia_postgres
+      - DEBUG=True
+
+  guia_api:
+    build: .
+    container_name: guia_api
+    networks: 
+      - guia_network
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+    depends_on: 
+      - guia_postgres
+    environment: 
+      - ENVIRONMENT=DEVELOPMENT
+      - POSTGRES_NAME=guia_minha_matricula
+      - POSTGRES_PASSWORD= 1234
+      - POSTGRES_USER= api_user
+      - POSTGRES_DB=guia_minha_matricula
+      - POSTGRES_HOST=guia_postgres
+      - SECRET_KEY=chavealeatoria
+      - DEBUG=True
+
+  guia_pgadmin:
+    image: dpage/pgadmin4
+    container_name: guia_pgadmin
+    ports: 
+      - "5433:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=sales_l@hotmail.com
+      - PGADMIN_DEFAULT_PASSWORD=adminpswd
+    # volumes: 
+    #   - ./.ignore/var/lib/pgadmin:/var/lib/pgadmin
+    networks:
+      - guia_network
+    logging: 
+      driver: none      
+
+networks: 
+  guia_network:
+    driver: bridge          
