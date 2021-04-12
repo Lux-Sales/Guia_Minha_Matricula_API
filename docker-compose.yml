@@ -9,8 +9,8 @@ services:
       - guia_network
     environment: 
       - POSTGRES_NAME=guia_minha_matricula
-      - POSTGRES_PASSWORD= 1234
-      - POSTGRES_USER= api_user
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=api_user
       - POSTGRES_DB=guia_minha_matricula
       - POSTGRES_HOST=guia_postgres
       - DEBUG=True
@@ -29,8 +29,8 @@ services:
     environment: 
       - ENVIRONMENT=DEVELOPMENT
       - POSTGRES_NAME=guia_minha_matricula
-      - POSTGRES_PASSWORD= 1234
-      - POSTGRES_USER= api_user
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=api_user
       - POSTGRES_DB=guia_minha_matricula
       - POSTGRES_HOST=guia_postgres
       - SECRET_KEY=chavealeatoria
