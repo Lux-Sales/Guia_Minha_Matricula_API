@@ -1,4 +1,3 @@
-
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -12,9 +11,8 @@ class RegisterUserViewSet(APIView):
     def post(self, request):
         add_user_serializer = AddUserSerializer(data=request.data)
         if add_user_serializer.is_valid(self):
-            # add_user_serializer.save()
-            msg = add_user_serializer.create(add_user_serializer.validated_data)
-            return Response({"message:":msg},status= status.HTTP_200_OK)
+           response = add_user_serializer.save()
+           return response
 
 class LoginViewSet(APIView):
     permission_classes = [AllowAny]    
@@ -26,7 +24,3 @@ class LoginViewSet(APIView):
             return Response({'refresh': str(refresh), 'access':str(refresh.access_token)}, status= status.HTTP_200_OK)
         else: 
             return Response('Invalid email or password', status=status.HTTP_401_UNAUTHORIZED)
-class TesteJWT(APIView):
-    def post(self, request):
-        print(request.user.token['user_id'])
-        return Response('user')
