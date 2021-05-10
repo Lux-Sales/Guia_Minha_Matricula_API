@@ -7,6 +7,7 @@ class Teacher(models.Model):
 
 class Subject(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    registerID = models.CharField(max_length=255, unique=True)
 
 class Comment(models.Model):
     comment = models.TextField()

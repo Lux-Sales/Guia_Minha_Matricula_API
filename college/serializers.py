@@ -4,7 +4,7 @@ from college.models import Subject, Teacher
 class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subject
-        fields = ['id','name']
+        fields = ['id','name','registerID']
 
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
