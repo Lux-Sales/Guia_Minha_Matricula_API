@@ -21,6 +21,6 @@ class LoginViewSet(APIView):
         user = authenticate(username=request.data['email'], password=request.data['password'])
         if user is not None:
             refresh = RefreshToken.for_user(user)
-            return Response({'refresh': str(refresh), 'access':str(refresh.access_token)}, status= status.HTTP_200_OK)
+            return Response({'refresh': str(refresh), 'access':str(refresh.access_token), 'id':user.id}, status= status.HTTP_200_OK)
         else: 
             return Response('Invalid email or password', status=status.HTTP_401_UNAUTHORIZED)
