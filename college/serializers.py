@@ -12,7 +12,7 @@ class TeacherSerializer(serializers.ModelSerializer):
         fields = ['id','name']
 
 class CommentSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Comment
         fields = ['comment','teacher','subject','user']
+
